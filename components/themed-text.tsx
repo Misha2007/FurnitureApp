@@ -2,12 +2,23 @@ import { StyleSheet, Text, type TextProps } from "react-native";
 
 import { useThemeColor } from "@/hooks/use-theme-color";
 
-import { DMSans_700Bold, useFonts } from "@expo-google-fonts/dm-sans";
+import { DMSans_700Bold } from "@expo-google-fonts/dm-sans";
+import {
+  Montserrat_500Medium,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
+import { useFonts } from "expo-font";
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  type?:
+    | "default"
+    | "title"
+    | "defaultSemiBold"
+    | "subtitle"
+    | "link"
+    | "button";
 };
 
 export function ThemedText({
@@ -21,6 +32,8 @@ export function ThemedText({
 
   const [fontsLoaded] = useFonts({
     DMSans_700Bold,
+    Montserrat_500Medium,
+    Montserrat_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -36,6 +49,7 @@ export function ThemedText({
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
+        type === "link" ? styles.button : undefined,
         style,
       ]}
       {...rest}
@@ -68,5 +82,10 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontSize: 16,
     color: "#0a7ea4",
+  },
+  button: {
+    fontFamily: "Montserrat_500Medium",
+    lineHeight: 30,
+    fontSize: 16,
   },
 });

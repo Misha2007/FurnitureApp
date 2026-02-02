@@ -1,7 +1,8 @@
 import { Image } from "expo-image";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 
 import ParallaxScrollView from "@/components/parallax-scroll-view";
+import ThemedButton from "@/components/themed-button";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import {
@@ -9,12 +10,15 @@ import {
   Montserrat_700Bold,
   useFonts,
 } from "@expo-google-fonts/montserrat";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
   const [fontsLoaded] = useFonts({
     Montserrat_400Regular,
     Montserrat_700Bold,
   });
+
+  const router = useRouter();
 
   if (!fontsLoaded) {
     return null;
@@ -46,26 +50,10 @@ export default function HomeScreen() {
         </ThemedView>
 
         <ThemedView style={styles.buttons}>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={[styles.btn, styles.loginBtn]}
-          >
-            <ThemedText
-              style={{
-                color: "#fff",
-                fontFamily: "Montserrat_700Bold",
-              }}
-            >
-              Sign Up
-            </ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.5} style={styles.btn}>
-            <ThemedText
-              style={{ color: "#4F63AC", fontFamily: "Montserrat_700Bold" }}
-            >
-              Sign In
-            </ThemedText>
-          </TouchableOpacity>
+          <ThemedButton onPress={() => router.navigate("/signup")}>
+            Sign Up
+          </ThemedButton>
+          <ThemedButton type="transparent">Sign In</ThemedButton>
         </ThemedView>
       </ThemedView>
     </ParallaxScrollView>
@@ -88,17 +76,6 @@ const styles = StyleSheet.create({
   splashImage: {
     height: 200,
     width: 350,
-  },
-  btn: {
-    width: 300,
-    height: 60,
-    borderRadius: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  loginBtn: {
-    backgroundColor: "#4F63AC",
   },
   buttons: {
     margin: 20,
