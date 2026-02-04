@@ -7,7 +7,7 @@ import { ThemedView } from "@/components/themed-view";
 import { Image } from "expo-image";
 import React from "react";
 
-export default function signup() {
+export default function signin() {
   const [text, onChangeText] = React.useState("John Doe");
 
   return (

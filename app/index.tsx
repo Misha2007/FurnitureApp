@@ -53,7 +53,12 @@ export default function HomeScreen() {
           <ThemedButton onPress={() => router.navigate("/signup")}>
             Sign Up
           </ThemedButton>
-          <ThemedButton type="transparent">Sign In</ThemedButton>
+          <ThemedButton
+            type="transparent"
+            onPress={() => router.navigate("/signin")}
+          >
+            Sign In
+          </ThemedButton>
         </ThemedView>
       </ThemedView>
     </ParallaxScrollView>

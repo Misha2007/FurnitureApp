@@ -5,7 +5,7 @@ import {
 } from "@expo-google-fonts/montserrat";
 import { Checkbox } from "expo-checkbox";
 import { Image } from "expo-image";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Pressable, StyleSheet, TouchableOpacityProps } from "react-native";
 import ThemedButton from "./themed-button";
 import { ThemedText } from "./themed-text";
@@ -34,46 +34,50 @@ export default function ThemedForm({
   });
 
   const [isChecked, setChecked] = useState(false);
+  const [isShown, setIShown] = useState(false);
 
   if (!fontsLoaded) {
     return null;
   }
 
   const onEyePress = () => {
-    setChecked(!isChecked);
+    setIShown(!isShown);
   };
   return (
     <ThemedView activeOpacity={0.7} style={[style]} {...otherProps}>
-      {inputs?.map((input, index) => (
-        <>
-          {input.checkbox ? (
-            <ThemedView style={styles.checkboxContainer}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? "#8D9BB5" : undefined}
-              />
-              <ThemedText>{input.title}</ThemedText>
-            </ThemedView>
-          ) : (
-            <ThemedView style={styles.fontView} key={index}>
-              <ThemedText>{input.title}</ThemedText>
+      {inputs?.map((input, index) =>
+        input.checkbox ? (
+          <ThemedView key={index} style={styles.checkboxContainer}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? "#8D9BB5" : undefined}
+            />
+            <ThemedText style={styles.checkboxText}>{input.title}</ThemedText>
+          </ThemedView>
+        ) : (
+          <ThemedView style={styles.fontView} key={index}>
+            <ThemedText style={{ color: "#4F63AC" }}>{input.title}</ThemedText>
+            <ThemedView style={styles.inputWrapper}>
               <ThemedTextInput
                 placeholder={input.placeHolder}
-                secureTextEntry={input.isSecured}
+                secureTextEntry={input.isSecured && !isShown}
                 autoCorrect={input.isSecured && false}
-              >
-                <Pressable style={{ width: 100, height: 200 }}>
+              />
+
+              {input.isSecured && (
+                <Pressable onPress={onEyePress} style={styles.eyeIcon}>
                   <Image
-                    source={require("../../FurnitureApp/assets/images/eye.png")}
-                  ></Image>
+                    source={require("@images/eye.png")}
+                    style={{ width: 20, height: 20 }}
+                  />
                 </Pressable>
-              </ThemedTextInput>
+              )}
             </ThemedView>
-          )}
-        </>
-      ))}
+          </ThemedView>
+        ),
+      )}
       <ThemedButton>Sign Up</ThemedButton>
     </ThemedView>
   );
@@ -85,6 +89,8 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_700Bold",
   },
   fontView: {
+    marginBottom: 20,
+    gap: 10,
     display: "flex",
     justifyContent: "center",
   },
@@ -97,5 +103,18 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
+  },
+  checkboxText: {
+    color: "#4F63AC",
+  },
+  inputWrapper: {
+    position: "relative",
+    justifyContent: "center",
+  },
+  eyeIcon: {
+    position: "absolute",
+    right: 12,
+    padding: 20,
+    paddingRight: 0,
   },
 });

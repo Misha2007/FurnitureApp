@@ -5,6 +5,7 @@ import { useThemeColor } from "@/hooks/use-theme-color";
 import { DMSans_700Bold } from "@expo-google-fonts/dm-sans";
 import {
   Montserrat_500Medium,
+  Montserrat_600SemiBold,
   Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
 import { useFonts } from "expo-font";
@@ -15,6 +16,7 @@ export type ThemedTextProps = TextProps & {
   type?:
     | "default"
     | "title"
+    | "header"
     | "defaultSemiBold"
     | "subtitle"
     | "link"
@@ -33,6 +35,7 @@ export function ThemedText({
   const [fontsLoaded] = useFonts({
     DMSans_700Bold,
     Montserrat_500Medium,
+    Montserrat_600SemiBold,
     Montserrat_700Bold,
   });
 
@@ -48,6 +51,7 @@ export function ThemedText({
         type === "title" ? styles.title : undefined,
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
+        type === "header" ? styles.header : undefined,
         type === "link" ? styles.link : undefined,
         type === "link" ? styles.button : undefined,
         style,
@@ -66,6 +70,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     fontWeight: "600",
+  },
+  header: {
+    fontFamily: "Montserrat_600SemiBold",
+    fontSize: 26,
+    fontWeight: "semibold",
+    color: "#4F63AC",
   },
   title: {
     fontFamily: "DMSans_700Bold",

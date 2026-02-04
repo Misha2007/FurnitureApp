@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   main: {
-    marginTop: 150,
     padding: 20,
     gap: 20,
     display: "flex",

@@ -2,9 +2,10 @@ import { StyleSheet, TextInput, TextInputProps } from "react-native";
 
 export type ThemedTextInputProps = TextInputProps;
 export default function ThemedTextInput({
+  style,
   ...otherProps
 }: ThemedTextInputProps) {
-  return <TextInput style={[styles.input]} {...otherProps} />;
+  return <TextInput style={[styles.input, style]} {...otherProps} />;
 }
 
 const styles = StyleSheet.create({
@@ -15,5 +16,6 @@ const styles = StyleSheet.create({
     borderColor: "#8D9BB5",
     borderRadius: 14,
     fontSize: 14,
+    padding: 20,
   },
 });
