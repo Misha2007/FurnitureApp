@@ -1,4 +1,5 @@
 import { router, Stack } from "expo-router";
+
 import "react-native-reanimated";
 
 import { ThemedText } from "@/components/themed-text";
@@ -62,7 +63,7 @@ export default function RootLayout() {
             headerTintColor: "#4F63AC",
             headerTitle: () => (
               <ThemedText type="header" style={{ lineHeight: 100 }}>
-                Sign Up
+                Sign in
               </ThemedText>
             ),
           }}

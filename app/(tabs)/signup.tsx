@@ -23,6 +23,7 @@ export default function signup() {
             { title: "Password", placeHolder: "**********", isSecured: true },
             { title: "I agree with Terms & Privacy", checkbox: true },
           ]}
+          buttonTitle="Sign Up"
         ></ThemedForm>
         <ThemedView style={styles.googleContainer}>
           <ThemedView style={styles.lines}>

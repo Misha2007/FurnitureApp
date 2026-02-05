@@ -19,12 +19,14 @@ export type ThemedButtonProps = TouchableOpacityProps & {
     isSecured?: boolean;
     checkbox?: boolean;
   }>;
+  buttonTitle: string;
 
   onSubmit?: () => void;
 };
 
 export default function ThemedForm({
   inputs,
+  buttonTitle,
   style,
   ...otherProps
 }: ThemedButtonProps) {
@@ -78,7 +80,7 @@ export default function ThemedForm({
           </ThemedView>
         ),
       )}
-      <ThemedButton>Sign Up</ThemedButton>
+      <ThemedButton>{buttonTitle}</ThemedButton>
     </ThemedView>
   );
 }
