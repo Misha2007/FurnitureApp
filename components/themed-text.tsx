@@ -8,6 +8,10 @@ import {
   Montserrat_600SemiBold,
   Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
+import {
+  NunitoSans_400Regular,
+  NunitoSans_700Bold,
+} from "@expo-google-fonts/nunito-sans";
 import { useFonts } from "expo-font";
 
 export type ThemedTextProps = TextProps & {
@@ -20,6 +24,9 @@ export type ThemedTextProps = TextProps & {
     | "defaultSemiBold"
     | "subtitle"
     | "link"
+    | "nunitoBold"
+    | "montserratBold"
+    | "nunitoRegular"
     | "button";
 };
 
@@ -37,6 +44,8 @@ export function ThemedText({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
     Montserrat_700Bold,
+    NunitoSans_400Regular,
+    NunitoSans_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -54,6 +63,9 @@ export function ThemedText({
         type === "header" ? styles.header : undefined,
         type === "link" ? styles.link : undefined,
         type === "link" ? styles.button : undefined,
+        type === "nunitoRegular" ? styles.nunitoRegular : undefined,
+        type === "nunitoBold" ? styles.nunitoBold : undefined,
+        type === "montserratBold" ? styles.montserratBold : undefined,
         style,
       ]}
       {...rest}
@@ -96,6 +108,18 @@ const styles = StyleSheet.create({
   button: {
     fontFamily: "Montserrat_500Medium",
     lineHeight: 30,
+    fontSize: 16,
+  },
+  nunitoRegular: {
+    fontFamily: "NunitoSans_400Regular",
+    fontSize: 14,
+  },
+  nunitoBold: {
+    fontFamily: "NunitoSans_700Bold",
+    fontSize: 14,
+  },
+  montserratBold: {
+    fontFamily: "Montserrat_700Bold",
     fontSize: 16,
   },
 });

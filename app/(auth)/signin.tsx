@@ -7,7 +7,7 @@ import { ThemedView } from "@/components/themed-view";
 import { Image } from "expo-image";
 import React from "react";
 
-export default function signup() {
+export default function signin() {
   const [text, onChangeText] = React.useState("John Doe");
 
   return (
@@ -15,21 +15,19 @@ export default function signup() {
       <ThemedView style={styles.titleContainer}>
         <ThemedForm
           inputs={[
-            { title: "Name", placeHolder: "John Doe" },
             {
               title: "E-mail",
               placeHolder: "example@gmail.com",
             },
             { title: "Password", placeHolder: "**********", isSecured: true },
-            { title: "I agree with Terms & Privacy", checkbox: true },
           ]}
-          buttonTitle="Sign Up"
+          buttonTitle="Sign In"
         ></ThemedForm>
         <ThemedView style={styles.googleContainer}>
           <ThemedView style={styles.lines}>
             <ThemedView style={styles.line} />
             <ThemedText style={styles.textLined} type="defaultSemiBold">
-              Or sign up with
+              Or sign in with
             </ThemedText>
             <ThemedView style={styles.line} />
           </ThemedView>
@@ -41,9 +39,9 @@ export default function signup() {
           </ThemedView>
         </ThemedView>
         <ThemedText style={{ color: "#4F63AC", textAlign: "center" }}>
-          Already have an account?{" "}
+          Don’t have an account?{" "}
           <ThemedText type="defaultSemiBold" style={{ color: "#4F63AC" }}>
-            Sign In{" "}
+            Sign Up{" "}
           </ThemedText>
         </ThemedText>
       </ThemedView>
@@ -54,6 +52,7 @@ export default function signup() {
 const styles = StyleSheet.create({
   titleContainer: {
     gap: 8,
+    flex: 1,
   },
   google: {
     backgroundColor: "#3F4A59",
@@ -68,7 +67,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    margin: 30,
+    marginTop: 30,
+    marginBottom: 30,
     gap: 15,
   },
   googleImage: {

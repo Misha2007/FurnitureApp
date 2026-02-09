@@ -17,6 +17,7 @@ export default function MainScrollView({ children }: Props) {
       style={{ backgroundColor }}
       contentContainerStyle={styles.container}
       scrollEventThrottle={16}
+      showsVerticalScrollIndicator={false}
     >
       <ThemedView style={[styles.main]}>
         <ThemedView style={styles.content}>{children}</ThemedView>
@@ -26,22 +27,11 @@ export default function MainScrollView({ children }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  container: {},
   content: {
-    padding: 32,
-    gap: 16,
     overflow: "hidden",
+    paddingRight: 30,
+    paddingLeft: 30,
   },
-  main: {
-    padding: 20,
-    gap: 20,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  main: {},
 });

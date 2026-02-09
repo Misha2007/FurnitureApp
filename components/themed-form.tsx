@@ -27,6 +27,7 @@ export type ThemedButtonProps = TouchableOpacityProps & {
 export default function ThemedForm({
   inputs,
   buttonTitle,
+  onSubmit,
   style,
   ...otherProps
 }: ThemedButtonProps) {
@@ -37,6 +38,7 @@ export default function ThemedForm({
 
   const [isChecked, setChecked] = useState(false);
   const [isShown, setIShown] = useState(false);
+  const isCheckBox = inputs?.some((input) => input.checkbox);
 
   if (!fontsLoaded) {
     return null;
@@ -80,7 +82,12 @@ export default function ThemedForm({
           </ThemedView>
         ),
       )}
-      <ThemedButton>{buttonTitle}</ThemedButton>
+      <ThemedButton
+        onPress={onSubmit}
+        style={[{ width: "100%" }, !isCheckBox && { marginTop: 30 }]}
+      >
+        {buttonTitle}
+      </ThemedButton>
     </ThemedView>
   );
 }
