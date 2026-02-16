@@ -1,13 +1,18 @@
 import type { PropsWithChildren } from "react";
-import { StyleSheet } from "react-native";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import Animated, { useAnimatedRef } from "react-native-reanimated";
 
 import { ThemedView } from "@/components/themed-view";
 import { useThemeColor } from "@/hooks/use-theme-color";
 
-type Props = PropsWithChildren<{}>;
+type Props = PropsWithChildren<{
+  contentContainerStyle?: StyleProp<ViewStyle>;
+}>;
 
-export default function MainScrollView({ children }: Props) {
+export default function MainScrollView({
+  children,
+  contentContainerStyle,
+}: Props) {
   const backgroundColor = useThemeColor({}, "background");
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
 
@@ -15,7 +20,7 @@ export default function MainScrollView({ children }: Props) {
     <Animated.ScrollView
       ref={scrollRef}
       style={{ backgroundColor }}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, contentContainerStyle]}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={false}
     >
@@ -32,6 +37,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     paddingRight: 30,
     paddingLeft: 30,
+    flex: 1,
   },
-  main: {},
+  main: {
+    flex: 1,
+  },
 });

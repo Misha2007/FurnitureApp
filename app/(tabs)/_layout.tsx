@@ -26,6 +26,22 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="favourites"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="bookmark" size={24} color="#4F63AC" />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="person" size={24} color="#4F63AC" />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
