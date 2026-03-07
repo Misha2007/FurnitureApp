@@ -5,15 +5,26 @@ import {
 } from "@expo-google-fonts/montserrat";
 import { Image } from "expo-image";
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacityProps } from "react-native";
+import { Pressable, StyleSheet, TouchableOpacityProps } from "react-native";
 import { ThemedText } from "./themed-text";
 import { ThemedView } from "./themed-view";
 
-export type ThemedButtonProps = TouchableOpacityProps & {
-  onSubmit?: () => void;
+export type Product = {
+  title: string;
+  price: number;
+  image: string;
 };
 
-export default function Item({ style, ...otherProps }: ThemedButtonProps) {
+type ItemProps = TouchableOpacityProps & {
+  product: Product;
+};
+
+export default function Item({
+  product,
+  onPress,
+  style,
+  ...otherProps
+}: ItemProps) {
   const [fontsLoaded] = useFonts({
     Montserrat_400Regular,
     Montserrat_700Bold,
@@ -22,65 +33,28 @@ export default function Item({ style, ...otherProps }: ThemedButtonProps) {
   const [isChecked, setChecked] = useState(false);
   const [isShown, setIShown] = useState(false);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  if (!fontsLoaded) return null;
 
-  const onEyePress = () => {
-    setIShown(!isShown);
-  };
   return (
-    <ThemedView activeOpacity={0.7} style={[style]} {...otherProps}>
-      <ThemedView style={styles.inputWrapper}>
-        <ThemedView>
-          <Image
-            source={
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Bethany_%285%29.JPG/1280px-Bethany_%285%29.JPG"
-            }
-            style={styles.image}
-          />
-        </ThemedView>
+    <Pressable onPress={onPress} style={[style]} {...otherProps}>
+      <ThemedView activeOpacity={0.7} style={[style]} {...otherProps}>
+        <ThemedView style={styles.inputWrapper}>
+          <ThemedView>
+            <Image source={product.image} style={styles.image} />
+          </ThemedView>
 
-        <ThemedText type="nunitoRegular">New</ThemedText>
-        <ThemedText type="nunitoBold">$ 12.00</ThemedText>
+          <ThemedText type="nunitoRegular">{product.title}</ThemedText>
+          <ThemedText type="nunitoBold">${product.price}</ThemedText>
+        </ThemedView>
       </ThemedView>
-    </ThemedView>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  text: {
-    color: "#fff",
-    fontFamily: "Montserrat_700Bold",
-  },
-  fontView: {
-    marginBottom: 20,
-    gap: 10,
-    display: "flex",
-    justifyContent: "center",
-  },
-  checkbox: {
-    borderColor: "#8D9BB5",
-    margin: 20,
-    marginLeft: 0,
-  },
-  checkboxContainer: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  checkboxText: {
-    color: "#4F63AC",
-  },
   inputWrapper: {
     position: "relative",
     justifyContent: "center",
-  },
-  eyeIcon: {
-    position: "absolute",
-    right: 12,
-    padding: 20,
-    paddingRight: 0,
   },
   image: {
     width: 150,

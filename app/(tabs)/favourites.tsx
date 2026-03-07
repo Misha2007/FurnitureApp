@@ -9,8 +9,8 @@ export default function favourites() {
   return (
     <MainScrollView>
       <ThemedView style={styles.main}>
-        <Favourite />
-        <Favourite />
+        <Favourite type="fav" />
+        <Favourite type="fav" />
       </ThemedView>
     </MainScrollView>
   );

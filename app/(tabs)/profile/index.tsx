@@ -26,13 +26,13 @@ export default function profile() {
               label="My Listings"
               description="Already have 10 listing"
               isChevron={true}
-              redirect={"/my-listings"}
+              redirect={"/profile/my-listings"}
             />
             <LinkBlock
               label="Settings"
               description="Account, FAQ, Contact"
               isChevron={true}
-              redirect={"/settings"}
+              redirect={"/profile/settings"}
             />
           </ThemedView>
         </ThemedView>

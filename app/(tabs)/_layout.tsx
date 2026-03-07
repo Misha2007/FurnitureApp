@@ -127,14 +127,18 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="profile/index"
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons
-              name={activeTabName === "profile" ? "person" : "person-outline"}
+              name={
+                activeTabName?.startsWith("profile")
+                  ? "person"
+                  : "person-outline"
+              }
               size={24}
               color={
-                activeTabName === "profile"
+                activeTabName?.startsWith("profile")
                   ? "#4F63AC"
                   : "rgba(153, 153, 153, 1)"
               }
@@ -157,6 +161,38 @@ export default function TabLayout() {
             >
               <Ionicons name="exit-outline" size={20} color="#4F63AC" />
             </Pressable>
+          ),
+          headerLeft: () => null,
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile/settings"
+        options={{
+          href: null,
+          headerShown: true,
+          headerTintColor: "#4F63AC",
+          headerTitle: () => (
+            <ThemedText type="montserratBold" style={{ lineHeight: 20 }}>
+              Settings
+            </ThemedText>
+          ),
+          headerLeft: () => null,
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile/my-listings"
+        options={{
+          href: null,
+          headerShown: true,
+          headerTintColor: "#4F63AC",
+          headerTitle: () => (
+            <ThemedText type="montserratBold" style={{ lineHeight: 20 }}>
+              Create a new listing
+            </ThemedText>
           ),
           headerLeft: () => null,
           headerTitleAlign: "center",

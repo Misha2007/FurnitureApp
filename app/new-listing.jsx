@@ -6,13 +6,12 @@ import { ThemedView } from "@/components/themed-view";
 
 export default function newListing() {
   return (
-    <MainScrollView contentContainerStyle={{ flex: 1 }}>
+    <MainScrollView>
       <ThemedView style={styles.main}>
         <ThemedForm
           inputs={[
             {
               title: "Upload photos",
-              photoUpload: true,
               type: "photoUpload",
             },
             {
@@ -42,6 +41,7 @@ export default function newListing() {
             },
           ]}
           buttonTitle="Submit"
+          style={{ marginBottom: 100 }}
         ></ThemedForm>
       </ThemedView>
     </MainScrollView>

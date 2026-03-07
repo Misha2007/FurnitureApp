@@ -25,7 +25,6 @@ export type ThemedButtonProps = TouchableOpacityProps & {
     multiline?: boolean;
     imagePath?: string;
     icon?: IoniconName;
-    photoUpload?: boolean;
     options?: { label: string; value: string }[];
   }>;
   buttonTitle: string;
@@ -76,22 +75,26 @@ export default function ThemedForm({
   };
   return (
     <ThemedView activeOpacity={0.7} style={[style]} {...otherProps}>
-      {inputs?.map((input, index) =>
-        input.type === "checkbox" ? (
-          <>
-            <ThemedView key={index} style={styles.checkboxContainer}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? "#8D9BB5" : undefined}
-              />
-              <ThemedText style={styles.checkboxText}>{input.title}</ThemedText>
-            </ThemedView>
-          </>
-        ) : (
-          <>
-            {input.type === "photoUpload" && (
+      {inputs?.map((input, index) => {
+        if (input.type === "checkbox") {
+          return (
+            <>
+              <ThemedView key={index} style={styles.checkboxContainer}>
+                <Checkbox
+                  style={styles.checkbox}
+                  value={isChecked}
+                  onValueChange={setChecked}
+                  color={isChecked ? "#8D9BB5" : undefined}
+                />
+                <ThemedText style={styles.checkboxText}>
+                  {input.title}
+                </ThemedText>
+              </ThemedView>
+            </>
+          );
+        } else if (input.type === "photoUpload") {
+          return (
+            <>
               <ThemedView key={index} style={{ marginBottom: 20 }}>
                 <ThemedText style={{ color: "#4F63AC", marginBottom: 10 }}>
                   {input.title}
@@ -125,8 +128,11 @@ export default function ThemedForm({
                   ))}
                 </ThemedView>
               </ThemedView>
-            )}
-            {input.type === "select" && (
+            </>
+          );
+        } else if (input.type === "select") {
+          return (
+            <>
               <ThemedView style={styles.fontView} key={index}>
                 <ThemedText style={{ color: "#4F63AC" }}>
                   {input.title}
@@ -148,8 +154,11 @@ export default function ThemedForm({
                   />
                 </ThemedView>
               </ThemedView>
-            )}
-            {!input.type && (
+            </>
+          );
+        } else {
+          return (
+            <>
               <ThemedView style={styles.fontView} key={index}>
                 <ThemedText style={{ color: "#4F63AC" }}>
                   {input.title}
@@ -178,10 +187,10 @@ export default function ThemedForm({
                   )}
                 </ThemedView>
               </ThemedView>
-            )}
-          </>
-        ),
-      )}
+            </>
+          );
+        }
+      })}
       <ThemedButton
         onPress={onSubmit}
         style={[{ width: "100%" }, !isCheckBox && { marginTop: 30 }]}

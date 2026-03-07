@@ -74,7 +74,6 @@ export default function RootLayout() {
         name="(tabs)/home"
         options={{
           headerShown: true,
-          title: "Sign in",
           headerTintColor: "#4F63AC",
           headerTitle: () => (
             <ThemedText type="montserratBold" style={{ lineHeight: 100 }}>
@@ -94,15 +93,41 @@ export default function RootLayout() {
         }}
       />
       <Stack.Screen
-        name="product"
+        name="product/[id]"
         options={{
           headerShown: true,
+          headerTitle: "",
           headerTransparent: true,
-          title: "Sign in",
+          headerLeft: () => (
+            <Pressable
+              style={{
+                padding: 20,
+                marginLeft: 10,
+                borderRadius: 6,
+                backgroundColor: "#fff",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 40,
+              }}
+              onPress={() => router.back()}
+            >
+              <FontAwesome6 name="chevron-left" size={15} color={"#4F63AC"} />
+            </Pressable>
+          ),
+          headerStyle: { backgroundColor: "transparent" },
+
+          headerRight: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="new-listing"
+        options={{
+          headerShown: true,
           headerTintColor: "#4F63AC",
+          headerTitleAlign: "center",
           headerTitle: () => (
             <ThemedText type="montserratBold" style={{ lineHeight: 100 }}>
-              Find All You Need
+              Create a new listing
             </ThemedText>
           ),
           headerLeft: () => (
@@ -112,7 +137,7 @@ export default function RootLayout() {
                 router.back();
               }}
             >
-              <FontAwesome6 name="magnifying-glass" size={20} color="#4F63AC" />
+              <FontAwesome6 name="chevron-left" size={20} color="#4F63AC" />
             </Pressable>
           ),
         }}
