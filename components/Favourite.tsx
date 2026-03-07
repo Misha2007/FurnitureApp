@@ -1,12 +1,17 @@
 import { StyleSheet } from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
+import { ThemedView, ThemedViewProps } from "@/components/themed-view";
+import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image } from "expo-image";
 import React from "react";
 
-export default function Favourite() {
+export type ThemedFavProps = ThemedViewProps & {
+  type?: string;
+};
+
+export default function Favourite({ style, type, ...rest }: ThemedFavProps) {
   return (
     <ThemedView
       style={[
@@ -17,6 +22,7 @@ export default function Favourite() {
           paddingBottom: 20,
           paddingTop: 20,
         },
+        style,
       ]}
     >
       <ThemedView style={styles.favourite}>
@@ -33,8 +39,11 @@ export default function Favourite() {
           </ThemedText>
         </ThemedView>
       </ThemedView>
-
-      <Ionicons name="close-circle-outline" size={24} color="#4F63AC" />
+      {type === "fav" ? (
+        <Ionicons name="close-circle-outline" size={24} color="#4F63AC" />
+      ) : (
+        <Feather name="trash" size={24} color="black" />
+      )}
     </ThemedView>
   );
 }

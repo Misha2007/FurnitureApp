@@ -68,6 +68,8 @@ export default function RootLayout() {
           ),
         }}
       />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
       <Stack.Screen
         name="(tabs)/home"
         options={{
@@ -92,7 +94,7 @@ export default function RootLayout() {
         }}
       />
       <Stack.Screen
-        name="(tabs)/product"
+        name="product"
         options={{
           headerShown: true,
           headerTransparent: true,
