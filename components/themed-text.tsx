@@ -25,6 +25,7 @@ export type ThemedTextProps = TextProps & {
     | "subtitle"
     | "link"
     | "nunitoBold"
+    | "nunitoSemiBold"
     | "montserratBold"
     | "nunitoRegular"
     | "button";
@@ -65,6 +66,8 @@ export function ThemedText({
         type === "link" ? styles.button : undefined,
         type === "nunitoRegular" ? styles.nunitoRegular : undefined,
         type === "nunitoBold" ? styles.nunitoBold : undefined,
+        type === "nunitoSemiBold" ? styles.nunitoSemiBold : undefined,
+
         type === "montserratBold" ? styles.montserratBold : undefined,
         style,
       ]}
@@ -117,6 +120,10 @@ const styles = StyleSheet.create({
   nunitoBold: {
     fontFamily: "NunitoSans_700Bold",
     fontSize: 14,
+  },
+  nunitoSemiBold: {
+    fontFamily: "NunitoSans_600Bold",
+    fontSize: 16,
   },
   montserratBold: {
     fontFamily: "Montserrat_700Bold",

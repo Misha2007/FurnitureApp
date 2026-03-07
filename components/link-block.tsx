@@ -34,14 +34,14 @@ export default function LinkBlock({
         {reverse ? (
           <>
             <ThemedText
-              type="nunitoRegular"
+              type="nunitoSemiBold"
               style={{ color: "#808080", fontSize: 12 }}
             >
               {description}
             </ThemedText>
 
             <ThemedText
-              type="nunitoBold"
+              type={isChevron ? "nunitoBold" : "nunitoSemiBold"}
               style={{ fontSize: 18, color: "#4F63AC" }}
             >
               {label}
@@ -50,18 +50,19 @@ export default function LinkBlock({
         ) : (
           <>
             <ThemedText
-              type="nunitoBold"
+              type={"nunitoBold"}
               style={{ fontSize: 18, color: "#4F63AC" }}
             >
               {label}
             </ThemedText>
-
-            <ThemedText
-              type="nunitoRegular"
-              style={{ color: "#808080", fontSize: 12 }}
-            >
-              {description}
-            </ThemedText>
+            {description && (
+              <ThemedText
+                type="nunitoRegular"
+                style={{ color: "#808080", fontSize: 12 }}
+              >
+                {description}
+              </ThemedText>
+            )}
           </>
         )}
       </ThemedView>
@@ -84,7 +85,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 20,
     marginBottom: 20,
     shadowColor: "#8A959E33",
     shadowOffset: { width: 0, height: 7 },

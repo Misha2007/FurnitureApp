@@ -14,7 +14,7 @@ export default function settings() {
         <ThemedView style={styles.main}>
           <ThemedView style={styles.category}>
             <ThemedText
-              type="nunitoBold"
+              type="nunitoSemiBold"
               style={{ fontSize: 20, color: "#909191" }}
             >
               Personal Information
@@ -37,22 +37,28 @@ export default function settings() {
         </ThemedView>
         <ThemedView style={styles.main}>
           <ThemedText
-            type="nunitoBold"
+            type="nunitoSemiBold"
             style={{ fontSize: 20, color: "#909191" }}
           >
             Help Center
           </ThemedText>
 
           <LinkBlock
-            label="Elina Hovakimyan"
-            description="Name"
-            isChevron={false}
+            label="FAQ"
+            description=""
+            isChevron={true}
             reverse={true}
           />
           <LinkBlock
-            label="bruno203@gmail.com"
-            description="Email"
-            isChevron={false}
+            label="Contact us"
+            description=""
+            isChevron={true}
+            reverse={true}
+          />
+          <LinkBlock
+            label="Privacy & Terms"
+            description=""
+            isChevron={true}
             reverse={true}
           />
         </ThemedView>

@@ -5,9 +5,12 @@ import MainScrollView from "@/components/main-scroll-view";
 import ThemedButton from "@/components/themed-button";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { useRouter } from "expo-router";
 import React from "react";
 
 export default function profile() {
+  const router = useRouter();
+
   return (
     <MainScrollView contentContainerStyle={{ flex: 1 }}>
       <ThemedView style={styles.main}>
@@ -18,20 +21,23 @@ export default function profile() {
           <ThemedText type="nunitoRegular" style={{ color: "#808080" }}>
             hello@gmail.com
           </ThemedText>
-          <LinkBlock
-            label="My Listings"
-            description="Already have 10 listing"
-            isChevron={true}
-          />
-          <LinkBlock
-            label="Settings"
-            description="Account, FAQ, Contact"
-            isChevron={true}
-            redirect={"/settings"}
-          />
+          <ThemedView style={{ marginTop: 20 }}>
+            <LinkBlock
+              label="My Listings"
+              description="Already have 10 listing"
+              isChevron={true}
+            />
+            <LinkBlock
+              label="Settings"
+              description="Account, FAQ, Contact"
+              isChevron={true}
+              redirect={"/settings"}
+            />
+          </ThemedView>
         </ThemedView>
         <ThemedButton
           style={{ marginBottom: 20, marginLeft: "auto", marginRight: "auto" }}
+          onPress={() => router.navigate("/new-listing")}
         >
           Add a new listing
         </ThemedButton>

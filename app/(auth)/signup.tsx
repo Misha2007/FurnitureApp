@@ -21,8 +21,13 @@ export default function signup() {
               title: "E-mail",
               placeHolder: "example@gmail.com",
             },
-            { title: "Password", placeHolder: "**********", isSecured: true },
-            { title: "I agree with Terms & Privacy", checkbox: true },
+            {
+              title: "Password",
+              placeHolder: "**********",
+              isSecured: true,
+              imagePath: require("@images/eye.png"),
+            },
+            { title: "I agree with Terms & Privacy", type: "checkbox" },
           ]}
           buttonTitle="Sign Up"
           onSubmit={() => {
