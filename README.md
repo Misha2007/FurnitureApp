@@ -1,7 +1,3 @@
-Here’s a clean **README.md** you can use for your school project. It explains the app, features, and how to run it with **React Native + Expo**.
-
----
-
 # Furniture App
 
 Furniture App is a **mobile application prototype** built with **React Native** and **Expo**.
