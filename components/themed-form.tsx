@@ -26,6 +26,7 @@ export type ThemedButtonProps = TouchableOpacityProps & {
     imagePath?: string;
     icon?: IoniconName;
     options?: { label: string; value: string }[];
+    required?: boolean;
   }>;
   buttonTitle: string;
 
@@ -73,126 +74,133 @@ export default function ThemedForm({
       setImages([...images, result.assets[0].uri]);
     }
   };
+
+  const handleSubmit = () => {
+    const requiredInputs = inputs?.filter((i) => i.required);
+
+    for (const input of requiredInputs ?? []) {
+      if (!values[input.title!] || values[input.title!].trim() === "") {
+        alert(`${input.title} is required`);
+        return;
+      }
+    }
+
+    onSubmit?.();
+  };
+
   return (
     <ThemedView activeOpacity={0.7} style={[style]} {...otherProps}>
       {inputs?.map((input, index) => {
         if (input.type === "checkbox") {
           return (
-            <>
-              <ThemedView key={index} style={styles.checkboxContainer}>
-                <Checkbox
-                  style={styles.checkbox}
-                  value={isChecked}
-                  onValueChange={setChecked}
-                  color={isChecked ? "#8D9BB5" : undefined}
-                />
-                <ThemedText style={styles.checkboxText}>
-                  {input.title}
-                </ThemedText>
-              </ThemedView>
-            </>
+            <ThemedView key={index} style={styles.checkboxContainer}>
+              <Checkbox
+                style={styles.checkbox}
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? "#8D9BB5" : undefined}
+              />
+              <ThemedText style={styles.checkboxText}>{input.title}</ThemedText>
+            </ThemedView>
           );
         } else if (input.type === "photoUpload") {
           return (
-            <>
-              <ThemedView key={index} style={{ marginBottom: 20 }}>
-                <ThemedText style={{ color: "#4F63AC", marginBottom: 10 }}>
-                  {input.title}
-                </ThemedText>
+            <ThemedView key={index} style={{ marginBottom: 20 }}>
+              <ThemedText style={{ color: "#4F63AC", marginBottom: 10 }}>
+                {input.title}
+              </ThemedText>
 
-                <ThemedView style={{ flexDirection: "row", gap: 10 }}>
-                  <Pressable onPress={pickImage} style={styles.uploadBox}>
-                    <Ionicons name="add" size={28} color="#A0A0A0" />
-                  </Pressable>
+              <ThemedView style={{ flexDirection: "row", gap: 10 }}>
+                <Pressable onPress={pickImage} style={styles.uploadBox}>
+                  <Ionicons name="add" size={28} color="#A0A0A0" />
+                </Pressable>
 
-                  {images.map((uri, i) => (
-                    <ThemedView key={i} style={styles.imageContainer}>
-                      <Image
-                        source={{ uri }}
-                        style={styles.uploadedImage}
-                        contentFit="cover"
-                      />
-                      <Pressable
-                        style={styles.removeIcon}
-                        onPress={() =>
-                          setImages(images.filter((_, index) => index !== i))
-                        }
-                      >
-                        <Ionicons
-                          name="close-circle"
-                          size={20}
-                          color="#4F63AC"
-                        />
-                      </Pressable>
-                    </ThemedView>
-                  ))}
-                </ThemedView>
+                {images.map((uri, i) => (
+                  <ThemedView key={i} style={styles.imageContainer}>
+                    <Image
+                      source={{ uri }}
+                      style={styles.uploadedImage}
+                      contentFit="cover"
+                    />
+                    <Pressable
+                      style={styles.removeIcon}
+                      onPress={() =>
+                        setImages(images.filter((_, index) => index !== i))
+                      }
+                    >
+                      <Ionicons name="close-circle" size={20} color="#4F63AC" />
+                    </Pressable>
+                  </ThemedView>
+                ))}
               </ThemedView>
-            </>
+            </ThemedView>
           );
         } else if (input.type === "select") {
           return (
-            <>
-              <ThemedView style={styles.fontView} key={index}>
-                <ThemedText style={{ color: "#4F63AC" }}>
-                  {input.title}
-                </ThemedText>
-                <ThemedView style={styles.inputWrapper}>
-                  <Dropdown
-                    data={input.options ?? []}
-                    onChange={(item) => {
-                      setValues((prev) => ({
-                        ...prev,
-                        [input.title!]: item.value,
-                      }));
-                    }}
-                    value={values[input.title!]}
-                    labelField="label"
-                    valueField="value"
-                    placeholder={input.placeHolder}
-                    style={styles.dropdown}
-                  />
-                </ThemedView>
+            <ThemedView style={styles.fontView} key={index}>
+              <ThemedText style={{ color: "#4F63AC" }}>
+                {input.title}
+              </ThemedText>
+              <ThemedView style={styles.inputWrapper}>
+                <Dropdown
+                  data={input.options ?? []}
+                  onChange={(item) => {
+                    setValues((prev) => ({
+                      ...prev,
+                      [input.title!]: item.value,
+                    }));
+                  }}
+                  value={values[input.title!]}
+                  labelField="label"
+                  valueField="value"
+                  placeholder={input.placeHolder}
+                  style={styles.dropdown}
+                />
               </ThemedView>
-            </>
+            </ThemedView>
           );
         } else {
           return (
-            <>
-              <ThemedView style={styles.fontView} key={index}>
-                <ThemedText style={{ color: "#4F63AC" }}>
-                  {input.title}
-                </ThemedText>
-                <ThemedView style={styles.inputWrapper}>
-                  <ThemedTextInput
-                    placeholder={input.placeHolder}
-                    secureTextEntry={input.isSecured && !isShown}
-                    autoCorrect={input.isSecured && false}
-                    multiline={input.multiline}
-                    style={input.multiline ? styles.textArea : undefined}
-                  />
+            <ThemedView style={styles.fontView} key={index}>
+              <ThemedText style={{ color: "#4F63AC" }}>
+                {input.title}
+              </ThemedText>
+              <ThemedView style={styles.inputWrapper}>
+                <ThemedTextInput
+                  placeholder={input.placeHolder}
+                  secureTextEntry={input.isSecured && !isShown}
+                  autoCorrect={input.isSecured && false}
+                  multiline={input.multiline}
+                  style={input.multiline ? styles.textArea : undefined}
+                  value={values[input.title!]}
+                  onChangeText={(text) =>
+                    setValues((prev) => ({
+                      ...prev,
+                      [input.title!]: text,
+                    }))
+                  }
+                />
 
-                  {input.imagePath && (
-                    <Pressable onPress={onEyePress} style={styles.eyeIcon}>
-                      <Image
-                        source={input.imagePath}
-                        style={{ width: 20, height: 20 }}
-                      />
-                    </Pressable>
-                  )}
-                  {input.icon && (
-                    <Pressable onPress={onEyePress} style={styles.eyeIcon}>
-                      <Ionicons name={input.icon} size={20} color="#999" />
-                    </Pressable>
-                  )}
-                </ThemedView>
+                {input.imagePath && (
+                  <Pressable onPress={onEyePress} style={styles.eyeIcon}>
+                    <Image
+                      source={input.imagePath}
+                      style={{ width: 20, height: 20 }}
+                    />
+                  </Pressable>
+                )}
+                {input.icon && (
+                  <Pressable onPress={onEyePress} style={styles.eyeIcon}>
+                    <Ionicons name={input.icon} size={20} color="#999" />
+                  </Pressable>
+                )}
               </ThemedView>
-            </>
+            </ThemedView>
           );
         }
       })}
       <ThemedButton
-        onPress={onSubmit}
+        onPress={handleSubmit}
         style={[{ width: "100%" }, !isCheckBox && { marginTop: 30 }]}
       >
         {buttonTitle}

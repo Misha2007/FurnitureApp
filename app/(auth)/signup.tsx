@@ -16,16 +16,18 @@ export default function signup() {
       <ThemedView style={styles.titleContainer}>
         <ThemedForm
           inputs={[
-            { title: "Name", placeHolder: "John Doe" },
+            { title: "Name", placeHolder: "John Doe", required: true },
             {
               title: "E-mail",
               placeHolder: "example@gmail.com",
+              required: true,
             },
             {
               title: "Password",
               placeHolder: "**********",
               isSecured: true,
               imagePath: require("@images/eye.png"),
+              required: true,
             },
             { title: "I agree with Terms & Privacy", type: "checkbox" },
           ]}

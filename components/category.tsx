@@ -6,23 +6,22 @@ import { ThemedView, ThemedViewProps } from "./themed-view";
 
 export type ThemedCategoryProps = ThemedViewProps & {
   isSelected?: boolean;
+  name?: string;
+  img?: string;
 };
 
 export default function Category({
   style,
   isSelected,
+  name,
+  img,
   ...otherProps
 }: ThemedCategoryProps) {
   return (
     <ThemedView style={[style]} {...otherProps}>
       <ThemedView style={styles.inputWrapper}>
         <ThemedView>
-          <Image
-            source={
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Bethany_%285%29.JPG/1280px-Bethany_%285%29.JPG"
-            }
-            style={styles.image}
-          />
+          <Image source={img} style={styles.image} />
         </ThemedView>
 
         <ThemedText
@@ -32,7 +31,7 @@ export default function Category({
             isSelected && { color: "#4F63AC" },
           ]}
         >
-          Popular
+          {name}
         </ThemedText>
       </ThemedView>
     </ThemedView>

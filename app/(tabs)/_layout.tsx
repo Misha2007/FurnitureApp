@@ -7,28 +7,12 @@ import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigationState } from "@react-navigation/native";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { Pressable } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
-  const state = useNavigationState((state) => state);
-  const tabsRoute = state.routes.find((r) => r.name === "(tabs)");
-
-  const tabsState = tabsRoute?.state as
-    | {
-        index: number;
-        routes: { name: string }[];
-      }
-    | undefined;
-
-  const activeTabName =
-    tabsState?.routes && tabsState.index != null
-      ? tabsState.routes[tabsState.index].name
-      : undefined;
 
   return (
     <Tabs
@@ -63,13 +47,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={activeTabName === "home" ? "home" : "home-outline"}
+              name={focused ? "home" : "home-outline"}
               size={24}
-              color={
-                activeTabName === "home" ? "#4F63AC" : "rgba(153, 153, 153, 1)"
-              }
+              color={focused ? "#4F63AC" : "rgba(153, 153, 153, 1)"}
             />
           ),
           headerShown: true,
@@ -86,12 +68,7 @@ export default function TabLayout() {
             </ThemedText>
           ),
           headerLeft: () => (
-            <Pressable
-              style={{ padding: 20 }}
-              onPress={() => {
-                router.back();
-              }}
-            >
+            <Pressable style={{ padding: 20 }}>
               <FontAwesome6 name="magnifying-glass" size={20} color="#4F63AC" />
             </Pressable>
           ),
@@ -101,17 +78,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="favourites"
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={
-                activeTabName === "favourites" ? "bookmark" : "bookmark-outline"
-              }
+              name={focused ? "bookmark" : "bookmark-outline"}
               size={24}
-              color={
-                activeTabName === "favourites"
-                  ? "#4F63AC"
-                  : "rgba(153, 153, 153, 1)"
-              }
+              color={focused ? "#4F63AC" : "rgba(153, 153, 153, 1)"}
             />
           ),
           headerShown: true,
@@ -129,19 +100,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile/index"
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={
-                activeTabName?.startsWith("profile")
-                  ? "person"
-                  : "person-outline"
-              }
+              name={focused ? "person" : "person-outline"}
               size={24}
-              color={
-                activeTabName?.startsWith("profile")
-                  ? "#4F63AC"
-                  : "rgba(153, 153, 153, 1)"
-              }
+              color={focused ? "#4F63AC" : "rgba(153, 153, 153, 1)"}
             />
           ),
           headerShown: true,
@@ -156,7 +119,7 @@ export default function TabLayout() {
             <Pressable
               style={{ padding: 20 }}
               onPress={() => {
-                router.back();
+                router.push("/");
               }}
             >
               <Ionicons name="exit-outline" size={20} color="#4F63AC" />
@@ -191,7 +154,7 @@ export default function TabLayout() {
           headerTintColor: "#4F63AC",
           headerTitle: () => (
             <ThemedText type="montserratBold" style={{ lineHeight: 20 }}>
-              Create a new listing
+              My Listings
             </ThemedText>
           ),
           headerLeft: () => null,

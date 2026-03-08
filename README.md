@@ -1,50 +1,107 @@
-# Welcome to your Expo app 👋
+Here’s a clean **README.md** you can use for your school project. It explains the app, features, and how to run it with **React Native + Expo**.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+---
 
-## Get started
+# Furniture App
 
-1. Install dependencies
+Furniture App is a **mobile application prototype** built with **React Native** and **Expo**.
+The project was created as a **school assignment** to demonstrate a mobile UI for browsing furniture.
 
-   ```bash
-   npm install
-   ```
+⚠️ This app is **frontend-only**. There is **no backend** and all data is **hard-coded inside the app**.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## Features
 
-In the output, you'll find options to open the app in a
+The app includes the following screens:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Splash Screen**
+  - Displays the app logo while loading.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Login / Register**
+  - Simple UI for authentication.
+  - No real authentication logic (no backend).
 
-## Get a fresh project
+- **Homepage**
+  - Displays furniture items.
+  - All product data is **hard-coded**.
 
-When you're ready, run:
+- **Favorites**
+  - Shows example favorite items.
+  - Data is **hard-coded**.
+  - Adding or removing favorites **is not functional**.
+
+- **Detailed Screen**
+  - Displays more detailed information about a selected furniture item.
+
+- **Profile**
+  - Shows user profile information.
+  - Profile data is **hard-coded**.
+
+---
+
+## Tech Stack
+
+- **React Native**
+- **Expo**
+- JavaScript
+- React Navigation (for screen navigation)
+
+---
+
+## Installation
+
+### 1. Clone the repository
 
 ```bash
-npm run reset-project
+git clone git@github.com:Misha2007/FurnitureApp.git
+cd FurnitureApp
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Install dependencies
 
-## Learn more
+Make sure you have **Node.js** installed.
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+### 4. Start the development server
 
-Join our community of developers creating universal apps.
+For local only:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npx expo start
+```
+
+or
+
+```bash
+npx expo start --tunnel
+```
+
+---
+
+### 5. Run the app
+
+You can run the app using:
+
+- **Expo Go** on your phone by scanning the QR code
+- Android emulator
+- iOS simulator (Mac only)
+
+---
+
+## Notes
+
+- This project is **for educational purposes only**.
+- The app **does not include a backend or database**.
+- All furniture items and user information are **static and hard-coded**.
+
+---
+
+## Author
+
+Created as a **school project** for learning mobile app development with **React Native**.

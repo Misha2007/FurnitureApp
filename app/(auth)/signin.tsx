@@ -5,6 +5,7 @@ import ThemedForm from "@/components/themed-form";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import React from "react";
 
 export default function signin() {
@@ -18,9 +19,18 @@ export default function signin() {
             {
               title: "E-mail",
               placeHolder: "example@gmail.com",
+              required: true,
             },
-            { title: "Password", placeHolder: "**********", isSecured: true },
+            {
+              title: "Password",
+              placeHolder: "**********",
+              isSecured: true,
+              required: true,
+            },
           ]}
+          onSubmit={() => {
+            router.push("/home");
+          }}
           buttonTitle="Sign In"
         ></ThemedForm>
         <ThemedView style={styles.googleContainer}>

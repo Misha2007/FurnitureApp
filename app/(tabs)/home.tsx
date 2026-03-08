@@ -61,11 +61,27 @@ export default function home() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={[styles.items, styles.categories]}
         >
-          <Category isSelected={true} />
-          <Category />
-          <Category />
-          <Category />
-          <Category />
+          <Category
+            isSelected={true}
+            name="popular"
+            img="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png"
+          />
+          <Category
+            name="Chair"
+            img="https://smallimg.pngkey.com/png/small/407-4074957_sherman-chair-sherman-chair-grand-rapids-chair.png"
+          />
+          <Category
+            name="Armchair"
+            img="https://smallimg.pngkey.com/png/small/276-2764754_lounge-chair-design-lounge-chairs-bukowski-take-armchair.png"
+          />
+          <Category
+            name="Bed"
+            img="https://smallimg.pngkey.com/png/small/1006-10065987_bed-frame.png"
+          />
+          <Category
+            name="Lamp"
+            img="https://smallimg.pngkey.com/png/small/8-85448_free-icons-png-transparent-table-lamp-clipart.png"
+          />
         </ScrollView>
         <ThemedView style={styles.items}>
           {products.map((product) => (

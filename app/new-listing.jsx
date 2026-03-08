@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 
 import MainScrollView from "@/components/main-scroll-view";
 import { ThemedView } from "@/components/themed-view";
+import { router } from "expo-router";
 
 export default function newListing() {
   return (
@@ -17,12 +18,15 @@ export default function newListing() {
             {
               title: "Title",
               placeHolder: "Listing Title",
+              required: true,
             },
             {
               title: "Category",
               type: "select",
               placeHolder: "Select the category",
               icon: "chevron-down-outline",
+              required: true,
+
               options: [
                 { label: "Electronics", value: "electronics" },
                 { label: "Furniture", value: "furniture" },
@@ -32,16 +36,22 @@ export default function newListing() {
             },
             {
               title: "Price",
+              required: true,
+
               placeHolder: "Enter price in USD",
             },
             {
               title: "Description",
               placeHolder: "Tell us more...",
+
               multiline: true,
             },
           ]}
           buttonTitle="Submit"
           style={{ marginBottom: 100 }}
+          onSubmit={() => {
+            router.push("/profile/my-listings");
+          }}
         ></ThemedForm>
       </ThemedView>
     </MainScrollView>

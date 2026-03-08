@@ -71,28 +71,6 @@ export default function RootLayout() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
       <Stack.Screen
-        name="(tabs)/home"
-        options={{
-          headerShown: true,
-          headerTintColor: "#4F63AC",
-          headerTitle: () => (
-            <ThemedText type="montserratBold" style={{ lineHeight: 100 }}>
-              Find All You Need
-            </ThemedText>
-          ),
-          headerLeft: () => (
-            <Pressable
-              style={{ padding: 20 }}
-              onPress={() => {
-                router.back();
-              }}
-            >
-              <FontAwesome6 name="magnifying-glass" size={20} color="#4F63AC" />
-            </Pressable>
-          ),
-        }}
-      />
-      <Stack.Screen
         name="product/[id]"
         options={{
           headerShown: true,

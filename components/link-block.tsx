@@ -28,7 +28,11 @@ export default function LinkBlock({
   return (
     <Pressable
       style={styles.category}
-      onPress={() => router.push(redirect ?? "/")}
+      onPress={() => {
+        if (redirect) {
+          router.push(redirect);
+        }
+      }}
     >
       <ThemedView>
         {reverse ? (
